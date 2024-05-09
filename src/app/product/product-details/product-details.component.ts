@@ -150,6 +150,11 @@ export class ProductDetailsComponent {
   }
 
   buyProduct() {
+    if (!this.isAuthenticated) {
+      this.router.navigate(['/auth']);
+      return;
+    }
+
     const productPrice = Number(this.product.price) || 0;
     const count = 1;
     const handler = (<any>window).StripeCheckout.configure({
